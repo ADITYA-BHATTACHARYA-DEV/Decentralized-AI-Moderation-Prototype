@@ -1,7 +1,6 @@
 import streamlit as st
-import requests, json, time, os, hashlib
-
-API = os.environ.get("MOD_API", "http://localhost:5001")
+import time
+from pouw import submit_content, federated_round, get_content_status, pouw_rewards  # replace with actual functions
 
 st.set_page_config(page_title="Decentralized Moderation Prototype", layout="wide")
 st.title("🕸️ Decentralized AI Moderation — Prototype")
@@ -10,12 +9,12 @@ st.title("🕸️ Decentralized AI Moderation — Prototype")
 with st.sidebar:
     st.header("Controls / Governance")
     if st.button("Run Federated Round"):
-        r = requests.post(f"{API}/federated_round")
-        st.success(r.json())
+        result = federated_round()
+        st.success(result)
 
     if st.button("Show PoUW Rewards"):
-        r = requests.get(f"{API}/pouw_rewards")
-        st.info(r.json())
+        rewards = pouw_rewards()
+        st.info(rewards)
 
     st.subheader("Preferences")
     moderation_level = st.selectbox("Moderation Sensitivity", ["Strict", "Medium", "Lenient"])
@@ -31,10 +30,8 @@ with col1:
     attach_media = st.file_uploader("Attach Images/Videos", type=["png","jpg","mp4"], accept_multiple_files=True)
     
     if st.button("Submit for Moderation"):
-        payload = {"text": text}
-        r = requests.post(f"{API}/submit_content", json=payload)
-        if r.status_code == 200:
-            cid = r.json().get("content_id")
+        cid = submit_content(text)
+        if cid:
             st.session_state["last_cid"] = cid
             st.success(f"Content submitted! Content ID: {cid}")
         else:
@@ -46,10 +43,8 @@ with col2:
     cid = st.text_input("Enter Content ID to View", st.session_state.get("last_cid",""))
     
     if st.button("Load Post") and cid:
-        r = requests.get(f"{API}/status/{cid}")
-        if r.status_code == 200:
-            rec = r.json()["record"]
-
+        rec = get_content_status(cid)
+        if rec:
             # Content card
             st.markdown(f"### @{rec.get('content_id')} — {time.ctime(rec.get('ts'))}")
             st.write(rec.get("text"))
@@ -69,7 +64,6 @@ with col2:
                 st.markdown(f"- **Merkle Root:** {rec.get('merkle_root')}")
                 st.markdown(f"- **VDF Delay:** {rec.get('vdf',{}).get('seconds')} seconds")
                 st.markdown(f"- **ZKP Status:** {rec.get('zkp',{}).get('status')}")
-                st.markdown(f"- **Blockchain Tx:** Placeholder link")
 
             # Engagement simulation
             st.markdown("#### Engagement")
@@ -81,16 +75,14 @@ with col2:
             if badge != "✅ Accepted":
                 if st.button("File Transparent Appeal"):
                     st.info("Appeal submitted to community governance feed.")
-
         else:
             st.error("Content not found!")
 
 # ---------------- Global Feed / Audit ----------------
 st.markdown("---")
 st.subheader("Global Transparency Feed (recently moderated posts)")
-r = requests.get(f"{API}/pouw_rewards")  # Placeholder: Replace with actual global feed endpoint if exists
-if r.status_code == 200:
-    rewards = r.json().get("rewards",[])
+rewards = pouw_rewards()
+if rewards:
     st.table(rewards)
 else:
     st.info("No global feed data available yet.")
