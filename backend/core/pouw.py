@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 import hashlib
-from backend import pouw  # make sure this path is correct
+from backend import pouw  # Make sure this path is correct
 
 st.set_page_config(page_title="Decentralized AI Moderation - PoUW", layout="wide")
 
@@ -21,14 +21,29 @@ if st.button("Submit Work"):
     event = pouw.submit_work(node_id=node_id, updates_hash=updates_hash, steps=steps)
     
     st.success("✅ Work submitted successfully!")
-    st.markdown(f"- **Node ID:** {node_id}\n- **Reward:** {event['reward']} tokens\n- **Timestamp:** {event['ts']}")
+    st.markdown(
+        f"""
+        **Node ID:** {node_id}  
+        **Reward:** {event['reward']} tokens  
+        **Timestamp:** {event['ts']}
+        """
+    )
     st.json(event)
 
 # --- Show Aggregated Rewards ---
 st.header("Aggregated PoUW Rewards")
 
-agg_rewards = pouw.summarize_rewards()
-if agg_rewards:
-    st.table(agg_rewards)
-else:
-    st.info("No work submitted yet. Submit some work above to see rewards here.")
+# Function to display rewards
+def display_rewards():
+    agg_rewards = pouw.summarize_rewards()
+    if agg_rewards:
+        st.table(agg_rewards)
+    else:
+        st.info("No work submitted yet. Submit some work above to see rewards here.")
+
+# Initial display
+display_rewards()
+
+# Add a refresh button
+if st.button("Refresh Rewards"):
+    display_rewards()
