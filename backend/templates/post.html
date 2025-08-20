@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Post Details</h2>
+
+<p><strong>Text:</strong> {{ post.text }}</p>
+<p><strong>Status:</strong> {{ post.inference.label }}</p>
+<p><strong>Confidence:</strong> {{ post.inference.score * 100 | round(2) }}%</p>
+<p><strong>Timestamp:</strong> {{ post.ts | round }}</p>
+
+<h3>Transparency & Proofs</h3>
+<ul>
+    <li>Merkle Root: {{ post.merkle_root }}</li>
+    <li>ZKP Verified: {{ post.zkp.verified }}</li>
+    <li>VDF Delay: {{ post.vdf.seconds }}s</li>
+    <li>DAG JSON: <pre>{{ post.dag }}</pre></li>
+</ul>
+
+<a href="/post/{{ post.content_id }}/appeal">File Appeal</a>
+{% endblock %}

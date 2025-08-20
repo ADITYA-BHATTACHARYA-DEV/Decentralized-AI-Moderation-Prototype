@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Audit & History Center</h2>
+{% for log in logs %}
+<div class="audit-card">
+    <p>Post ID: {{ log.content_id }}</p>
+    <p>Status: {{ log.inference.label }}</p>
+    <p>Merkle Root: {{ log.merkle_root }}</p>
+    <p>ZKP Verified: {{ log.zkp.verified }}</p>
+</div>
+{% endfor %}
+{% endblock %}

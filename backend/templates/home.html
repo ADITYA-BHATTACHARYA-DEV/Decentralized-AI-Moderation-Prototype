@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Home Feed</h2>
+
+<div id="feed">
+    {% for post in posts %}
+    <div class="post-card">
+        <div class="post-header">
+            <strong>{{ post.inference.get('user', 'Anonymous') }}</strong>
+            <span>{{ post.ts | round }}</span>
+        </div>
+        <p>{{ post.text }}</p>
+        <div class="moderation">
+            Status: 
+            {% if post.inference.label == "accepted" %}
+                ✅
+            {% elif post.inference.label == "flagged" %}
+                ⚠
+            {% else %}
+                ❌
+            {% endif %}
+            | Confidence: {{ post.inference.score * 100 | round(2) }}%
+            <button onclick="showProof('{{ post.content_id }}')">Proof</button>
+        </div>
+        <div class="engagement">
+            <button>Like</button> <button>Comment</button> <button>Share</button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

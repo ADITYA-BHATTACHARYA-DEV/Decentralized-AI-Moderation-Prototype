@@ -1,0 +1,154 @@
+{
+  "content_id": "cnt_ac63eb6530",
+  "text": "Vaibhav Sir is Sexy",
+  "inference": {
+    "label": "allow",
+    "score": 0.0,
+    "policy_flags": []
+  },
+  "vdf": {
+    "output": "0x127f991aea31061ccf5d6763a224466014adc05e4698666a3bc9d8b93f40e0d0",
+    "seconds": 0.05167436599731445
+  },
+  "merkle_root": "0x560261b7877a2a1be404b5bb619cb518b22da7ea8f57fe074303b0bc1a66c059",
+  "proofs": [
+    [
+      [
+        "0xea1f26f4e86f890f1515ab228ea7ce2f188adf21a2b2578e22688a37b41d30a2",
+        "right"
+      ],
+      [
+        "0x61d322a2cc2d96e14ac7ec319ea4d445e35bec5f22ed4f06c3d83cd75b7e95d4",
+        "right"
+      ],
+      [
+        "0xc270032b7f80ddf132529a8d76000f14d74b7f7573706e5518c8349ff3ffa971",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0x3616c3fde3145fb6cb506961b84fa0137e940fc4a60b0026d63c7d0497af5df3",
+        "left"
+      ],
+      [
+        "0x61d322a2cc2d96e14ac7ec319ea4d445e35bec5f22ed4f06c3d83cd75b7e95d4",
+        "right"
+      ],
+      [
+        "0xc270032b7f80ddf132529a8d76000f14d74b7f7573706e5518c8349ff3ffa971",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0xf4d5219bd5c730b03b56b629ed9e2fda7476170c9ea155289efd4eb20cc76ce0",
+        "right"
+      ],
+      [
+        "0x739297f551351d0e11801867c081fdc024edf2735dd4210c4423dcb5ccae44b6",
+        "left"
+      ],
+      [
+        "0xc270032b7f80ddf132529a8d76000f14d74b7f7573706e5518c8349ff3ffa971",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0xd988c1dc6b2d666c89e172f9c9363259f037cb047d6f29cd30c53d307cbaac0b",
+        "left"
+      ],
+      [
+        "0x739297f551351d0e11801867c081fdc024edf2735dd4210c4423dcb5ccae44b6",
+        "left"
+      ],
+      [
+        "0xc270032b7f80ddf132529a8d76000f14d74b7f7573706e5518c8349ff3ffa971",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0x46368c3012c2b41f433060fc144925fd7b4aaa5d2f078c5cce5aa835e794a20c",
+        "right"
+      ],
+      [
+        "0x03d992a817c2d9dbcd957c6c3790b1c857986e6449492714d5c4d6a5aea51735",
+        "right"
+      ],
+      [
+        "0xdd5f20a2227ebb29f5aecd3635a12f523956826cc7dbfb8e09e4c608db85dfb5",
+        "left"
+      ]
+    ]
+  ],
+  "model_hash": "0x87ec84c0b8a6422d32368fe1ed95cae9e5156f27de15d7fcd855b67fe91373a2",
+  "ts": 1755669189.8254948,
+  "dag": {
+    "nodes": [
+      {
+        "id": "ingest",
+        "label": "Ingest content"
+      },
+      {
+        "id": "local_inference",
+        "label": "Local AI inference"
+      },
+      {
+        "id": "vdf",
+        "label": "VDF delay"
+      },
+      {
+        "id": "merkle",
+        "label": "Merkle root"
+      },
+      {
+        "id": "anchor",
+        "label": "Anchor on-chain"
+      },
+      {
+        "id": "zkp",
+        "label": "ZKP verify (mock)"
+      },
+      {
+        "id": "finalize",
+        "label": "Finalize decision"
+      }
+    ],
+    "edges": [
+      {
+        "u": "ingest",
+        "v": "local_inference"
+      },
+      {
+        "u": "local_inference",
+        "v": "vdf"
+      },
+      {
+        "u": "local_inference",
+        "v": "merkle"
+      },
+      {
+        "u": "vdf",
+        "v": "finalize"
+      },
+      {
+        "u": "merkle",
+        "v": "anchor"
+      },
+      {
+        "u": "anchor",
+        "v": "finalize"
+      },
+      {
+        "u": "zkp",
+        "v": "finalize"
+      }
+    ]
+  },
+  "zkp": {
+    "status": "placeholder",
+    "verified": false
+  }
+}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Governance Panel</h2>
+{% for case in cases %}
+<div class="case-card">
+    <p><strong>Case:</strong> {{ case.summary }}</p>
+    <p>Content snippet: {{ case.content_snippet }}</p>
+    <p>Moderator decision: {{ case.decision }}</p>
+    <button onclick="vote('{{ case.id }}', 'yes')">Vote Yes</button>
+    <button onclick="vote('{{ case.id }}', 'no')">Vote No</button>
+</div>
+{% endfor %}
+
+<script>
+async function vote(case_id, vote) {
+    let resp = await fetch(`/governance_vote/${case_id}`, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({vote})
+    });
+    let data = await resp.json();
+    alert(data.ok ? "Vote recorded" : "Error voting");
+}
+</script>
+{% endblock %}

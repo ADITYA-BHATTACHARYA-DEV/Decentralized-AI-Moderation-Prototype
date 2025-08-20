@@ -1,0 +1,18 @@
+{
+  "events": [
+    {
+      "node": "node-local",
+      "updates": "c78cfc7cdb04b4411e36dd574e0bcf958d5f668e390a25c259356d3e6c6eeebb",
+      "steps": 5,
+      "reward": 0.005,
+      "ts": 1755666224.0184593
+    },
+    {
+      "node": "node-local",
+      "updates": "c94c7e6fe503e0652b99a743bd2640bb1f2ef8ccac53a2bba79aeb8dd7ff4ca3",
+      "steps": 5,
+      "reward": 0.005,
+      "ts": 1755669129.583979
+    }
+  ]
+}

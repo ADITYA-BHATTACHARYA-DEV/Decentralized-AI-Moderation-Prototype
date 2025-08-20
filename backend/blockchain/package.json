@@ -1,0 +1,9 @@
+{
+  "name": "moderation-blockchain",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "hardhat": "^2.22.10",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0"
+  }
+}

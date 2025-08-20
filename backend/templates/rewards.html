@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>My Contributions & Rewards</h2>
+<ul>
+    {% for user, points in rewards.items() %}
+    <li>{{ user }}: {{ points }} pts</li>
+    {% endfor %}
+</ul>
+{% endblock %}

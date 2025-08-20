@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Create New Post</h2>
+<form id="postForm">
+    <textarea name="text" id="text" placeholder="Write something..."></textarea><br>
+    <input type="file" id="media"><br>
+    <button type="submit">Submit</button>
+</form>
+
+<div id="aiVerdict"></div>
+
+<script>
+document.getElementById('postForm').onsubmit = async (e) => {
+    e.preventDefault();
+    let text = document.getElementById('text').value;
+    let resp = await fetch('/submit_content', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({text})
+    });
+    let data = await resp.json();
+    if(data.ok) {
+        document.getElementById('aiVerdict').innerText = "Post submitted! ID: " + data.content_id;
+    } else {
+        document.getElementById('aiVerdict').innerText = "Error submitting post";
+    }
+}
+</script>
+{% endblock %}
