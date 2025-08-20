@@ -1,20 +1,29 @@
 import streamlit as st
-import time
-from pouw import submit_content, federated_round, get_content_status, pouw_rewards  # replace with actual functions
+import requests, time, os
 
-st.set_page_config(page_title="Decentralized Moderation Prototype", layout="wide")
+# Use environment variable for API endpoint (or default to localhost for local testing)
+API = os.environ.get("MOD_API", "http://localhost:5001")
+
+st.set_page_config(page_title="Decentralized AI Moderation — Prototype", layout="wide")
 st.title("🕸️ Decentralized AI Moderation — Prototype")
 
 # ---------------- Sidebar: Controls ----------------
 with st.sidebar:
     st.header("Controls / Governance")
+    
     if st.button("Run Federated Round"):
-        result = federated_round()
-        st.success(result)
+        try:
+            r = requests.post(f"{API}/federated_round")
+            st.success(r.json())
+        except Exception as e:
+            st.error(f"Failed to run federated round: {e}")
 
     if st.button("Show PoUW Rewards"):
-        rewards = pouw_rewards()
-        st.info(rewards)
+        try:
+            r = requests.get(f"{API}/pouw_rewards")
+            st.info(r.json())
+        except Exception as e:
+            st.error(f"Failed to fetch rewards: {e}")
 
     st.subheader("Preferences")
     moderation_level = st.selectbox("Moderation Sensitivity", ["Strict", "Medium", "Lenient"])
@@ -30,12 +39,15 @@ with col1:
     attach_media = st.file_uploader("Attach Images/Videos", type=["png","jpg","mp4"], accept_multiple_files=True)
     
     if st.button("Submit for Moderation"):
-        cid = submit_content(text)
-        if cid:
+        try:
+            payload = {"text": text}
+            r = requests.post(f"{API}/submit_content", json=payload)
+            r.raise_for_status()
+            cid = r.json().get("content_id")
             st.session_state["last_cid"] = cid
             st.success(f"Content submitted! Content ID: {cid}")
-        else:
-            st.error("Submission failed!")
+        except Exception as e:
+            st.error(f"Submission failed: {e}")
 
 # ---------------- Content Display ----------------
 with col2:
@@ -43,8 +55,11 @@ with col2:
     cid = st.text_input("Enter Content ID to View", st.session_state.get("last_cid",""))
     
     if st.button("Load Post") and cid:
-        rec = get_content_status(cid)
-        if rec:
+        try:
+            r = requests.get(f"{API}/status/{cid}")
+            r.raise_for_status()
+            rec = r.json()["record"]
+
             # Content card
             st.markdown(f"### @{rec.get('content_id')} — {time.ctime(rec.get('ts'))}")
             st.write(rec.get("text"))
@@ -64,6 +79,7 @@ with col2:
                 st.markdown(f"- **Merkle Root:** {rec.get('merkle_root')}")
                 st.markdown(f"- **VDF Delay:** {rec.get('vdf',{}).get('seconds')} seconds")
                 st.markdown(f"- **ZKP Status:** {rec.get('zkp',{}).get('status')}")
+                st.markdown(f"- **Blockchain Tx:** Placeholder link")
 
             # Engagement simulation
             st.markdown("#### Engagement")
@@ -75,14 +91,20 @@ with col2:
             if badge != "✅ Accepted":
                 if st.button("File Transparent Appeal"):
                     st.info("Appeal submitted to community governance feed.")
-        else:
-            st.error("Content not found!")
+
+        except Exception as e:
+            st.error(f"Failed to load content: {e}")
 
 # ---------------- Global Feed / Audit ----------------
 st.markdown("---")
 st.subheader("Global Transparency Feed (recently moderated posts)")
-rewards = pouw_rewards()
-if rewards:
-    st.table(rewards)
-else:
-    st.info("No global feed data available yet.")
+try:
+    r = requests.get(f"{API}/pouw_rewards")  # Placeholder: Replace with actual global feed endpoint
+    r.raise_for_status()
+    rewards = r.json().get("rewards",[])
+    if rewards:
+        st.table(rewards)
+    else:
+        st.info("No global feed data available yet.")
+except Exception as e:
+    st.error(f"Failed to load global feed: {e}")
