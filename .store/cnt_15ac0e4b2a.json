@@ -1,0 +1,154 @@
+{
+  "content_id": "cnt_15ac0e4b2a",
+  "text": "New Delhi",
+  "inference": {
+    "label": "allow",
+    "score": 0.0,
+    "policy_flags": []
+  },
+  "vdf": {
+    "output": "0x195982ea3330fbdf0970b3909135b47f1468771dda07e1bf1efe9b7b96e12c77",
+    "seconds": 0.08945584297180176
+  },
+  "merkle_root": "0x680d8ca3f63d2e0c2176aff71565c6bd093974d6fa6f7ea907479e196884e418",
+  "proofs": [
+    [
+      [
+        "0xea1f26f4e86f890f1515ab228ea7ce2f188adf21a2b2578e22688a37b41d30a2",
+        "right"
+      ],
+      [
+        "0x61d322a2cc2d96e14ac7ec319ea4d445e35bec5f22ed4f06c3d83cd75b7e95d4",
+        "right"
+      ],
+      [
+        "0xc9d8cd341cdfd5c3189bc151fbe728290d4f537553cd1d55f8a3ac1d4a192e37",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0xa6d8e4a105335434ac78f09907964353499e677a274f2dadde1d287c6e879c3e",
+        "left"
+      ],
+      [
+        "0x61d322a2cc2d96e14ac7ec319ea4d445e35bec5f22ed4f06c3d83cd75b7e95d4",
+        "right"
+      ],
+      [
+        "0xc9d8cd341cdfd5c3189bc151fbe728290d4f537553cd1d55f8a3ac1d4a192e37",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0xf4d5219bd5c730b03b56b629ed9e2fda7476170c9ea155289efd4eb20cc76ce0",
+        "right"
+      ],
+      [
+        "0xd752ec54cb415f58937f3e95ce4e40eb551635ac225d0ebe10866e13395f8e07",
+        "left"
+      ],
+      [
+        "0xc9d8cd341cdfd5c3189bc151fbe728290d4f537553cd1d55f8a3ac1d4a192e37",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0xd988c1dc6b2d666c89e172f9c9363259f037cb047d6f29cd30c53d307cbaac0b",
+        "left"
+      ],
+      [
+        "0xd752ec54cb415f58937f3e95ce4e40eb551635ac225d0ebe10866e13395f8e07",
+        "left"
+      ],
+      [
+        "0xc9d8cd341cdfd5c3189bc151fbe728290d4f537553cd1d55f8a3ac1d4a192e37",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0x3b0f0fb9bcac89401e563fb9f88f11e13a16dfdccad2aca85bcc51239a744a2d",
+        "right"
+      ],
+      [
+        "0x679fe5ad9ee616f1eacccfc71d47a446b7351b87bcc8d83e7393398a6d4f778b",
+        "right"
+      ],
+      [
+        "0x404f01216a1482b03bda119be42e36d3b1769044642006ac3db4b948cf8b965f",
+        "left"
+      ]
+    ]
+  ],
+  "model_hash": "0x87ec84c0b8a6422d32368fe1ed95cae9e5156f27de15d7fcd855b67fe91373a2",
+  "ts": 1755691630.0946088,
+  "dag": {
+    "nodes": [
+      {
+        "id": "ingest",
+        "label": "Ingest content"
+      },
+      {
+        "id": "local_inference",
+        "label": "Local AI inference"
+      },
+      {
+        "id": "vdf",
+        "label": "VDF delay"
+      },
+      {
+        "id": "merkle",
+        "label": "Merkle root"
+      },
+      {
+        "id": "anchor",
+        "label": "Anchor on-chain"
+      },
+      {
+        "id": "zkp",
+        "label": "ZKP verify (mock)"
+      },
+      {
+        "id": "finalize",
+        "label": "Finalize decision"
+      }
+    ],
+    "edges": [
+      {
+        "u": "ingest",
+        "v": "local_inference"
+      },
+      {
+        "u": "local_inference",
+        "v": "vdf"
+      },
+      {
+        "u": "local_inference",
+        "v": "merkle"
+      },
+      {
+        "u": "vdf",
+        "v": "finalize"
+      },
+      {
+        "u": "merkle",
+        "v": "anchor"
+      },
+      {
+        "u": "anchor",
+        "v": "finalize"
+      },
+      {
+        "u": "zkp",
+        "v": "finalize"
+      }
+    ]
+  },
+  "zkp": {
+    "status": "placeholder",
+    "verified": false
+  }
+}

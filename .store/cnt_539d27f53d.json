@@ -1,0 +1,154 @@
+{
+  "content_id": "cnt_539d27f53d",
+  "text": "Max VErstappen",
+  "inference": {
+    "label": "allow",
+    "score": 0.0,
+    "policy_flags": []
+  },
+  "vdf": {
+    "output": "0x3884c9fa7a856957672cdc5c18d368db4b7c51621e34c949fc319f3823c8bbd0",
+    "seconds": 0.06821823120117188
+  },
+  "merkle_root": "0x693d7136b57a593d8cf49e21b51907994794e94d4401b160962528bd2b4fdd4a",
+  "proofs": [
+    [
+      [
+        "0xea1f26f4e86f890f1515ab228ea7ce2f188adf21a2b2578e22688a37b41d30a2",
+        "right"
+      ],
+      [
+        "0x61d322a2cc2d96e14ac7ec319ea4d445e35bec5f22ed4f06c3d83cd75b7e95d4",
+        "right"
+      ],
+      [
+        "0x7e64b032c3b574b41257eb1b0cbafe119de82b33b3c556309dab3d4b54734c96",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0xda2724c94e8d4e71adf4e16bd8abb590ab5ce444728147164fe04fe0fd7bb9ea",
+        "left"
+      ],
+      [
+        "0x61d322a2cc2d96e14ac7ec319ea4d445e35bec5f22ed4f06c3d83cd75b7e95d4",
+        "right"
+      ],
+      [
+        "0x7e64b032c3b574b41257eb1b0cbafe119de82b33b3c556309dab3d4b54734c96",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0xf4d5219bd5c730b03b56b629ed9e2fda7476170c9ea155289efd4eb20cc76ce0",
+        "right"
+      ],
+      [
+        "0x859bbdd0498b10f788feee06d6ae3bcc55c100e58fc7412d1ec7d85f2f5c2b44",
+        "left"
+      ],
+      [
+        "0x7e64b032c3b574b41257eb1b0cbafe119de82b33b3c556309dab3d4b54734c96",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0xd988c1dc6b2d666c89e172f9c9363259f037cb047d6f29cd30c53d307cbaac0b",
+        "left"
+      ],
+      [
+        "0x859bbdd0498b10f788feee06d6ae3bcc55c100e58fc7412d1ec7d85f2f5c2b44",
+        "left"
+      ],
+      [
+        "0x7e64b032c3b574b41257eb1b0cbafe119de82b33b3c556309dab3d4b54734c96",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0xc8078aae8de13ef79e64bb5e1d618cd66c24eee5ea3446c873839610cfa9cc85",
+        "right"
+      ],
+      [
+        "0xb74496114a8ac17aa67875298cfe4581647fad7bb707093372c7ed4a92536e74",
+        "right"
+      ],
+      [
+        "0x5bc9046beb9affe7378dfa483d8e475d968a468889aaf29a74e52f227cbef83d",
+        "left"
+      ]
+    ]
+  ],
+  "model_hash": "0x87ec84c0b8a6422d32368fe1ed95cae9e5156f27de15d7fcd855b67fe91373a2",
+  "ts": 1755677419.982101,
+  "dag": {
+    "nodes": [
+      {
+        "id": "ingest",
+        "label": "Ingest content"
+      },
+      {
+        "id": "local_inference",
+        "label": "Local AI inference"
+      },
+      {
+        "id": "vdf",
+        "label": "VDF delay"
+      },
+      {
+        "id": "merkle",
+        "label": "Merkle root"
+      },
+      {
+        "id": "anchor",
+        "label": "Anchor on-chain"
+      },
+      {
+        "id": "zkp",
+        "label": "ZKP verify (mock)"
+      },
+      {
+        "id": "finalize",
+        "label": "Finalize decision"
+      }
+    ],
+    "edges": [
+      {
+        "u": "ingest",
+        "v": "local_inference"
+      },
+      {
+        "u": "local_inference",
+        "v": "vdf"
+      },
+      {
+        "u": "local_inference",
+        "v": "merkle"
+      },
+      {
+        "u": "vdf",
+        "v": "finalize"
+      },
+      {
+        "u": "merkle",
+        "v": "anchor"
+      },
+      {
+        "u": "anchor",
+        "v": "finalize"
+      },
+      {
+        "u": "zkp",
+        "v": "finalize"
+      }
+    ]
+  },
+  "zkp": {
+    "status": "placeholder",
+    "verified": false
+  }
+}

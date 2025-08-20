@@ -1,0 +1,162 @@
+{
+  "content_id": "cnt_3b985a1657",
+  "text": "Vaibhav is a lover Boy",
+  "inference": {
+    "label": "allow",
+    "score": 0.0,
+    "policy_flags": []
+  },
+  "vdf": {
+    "output": "0x7d97c50fa2ffbf508716197ff0aeee21e8969a885b96f0d20dfe5721739789d7",
+    "seconds": 0.09035158157348633
+  },
+  "merkle_root": "0x22d0f2ab6004fc35ae16b6ca63677dc62a07f3e1c839d96cd3b96ae34e2fd814",
+  "proofs": [
+    [
+      [
+        "0xea1f26f4e86f890f1515ab228ea7ce2f188adf21a2b2578e22688a37b41d30a2",
+        "right"
+      ],
+      [
+        "0x61d322a2cc2d96e14ac7ec319ea4d445e35bec5f22ed4f06c3d83cd75b7e95d4",
+        "right"
+      ],
+      [
+        "0x952278170ba2b1066f3304ab91dd0a63f08f6fa8a22d5dde46c3916e3be72359",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0xa0801226a7ae120d298429fd872aabdf2f432d826405628af55b87af47662910",
+        "left"
+      ],
+      [
+        "0x61d322a2cc2d96e14ac7ec319ea4d445e35bec5f22ed4f06c3d83cd75b7e95d4",
+        "right"
+      ],
+      [
+        "0x952278170ba2b1066f3304ab91dd0a63f08f6fa8a22d5dde46c3916e3be72359",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0xf4d5219bd5c730b03b56b629ed9e2fda7476170c9ea155289efd4eb20cc76ce0",
+        "right"
+      ],
+      [
+        "0x741a82677e97104defafaee68da952c613d21f363bdd4698acffd3ca45977e37",
+        "left"
+      ],
+      [
+        "0x952278170ba2b1066f3304ab91dd0a63f08f6fa8a22d5dde46c3916e3be72359",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0xd988c1dc6b2d666c89e172f9c9363259f037cb047d6f29cd30c53d307cbaac0b",
+        "left"
+      ],
+      [
+        "0x741a82677e97104defafaee68da952c613d21f363bdd4698acffd3ca45977e37",
+        "left"
+      ],
+      [
+        "0x952278170ba2b1066f3304ab91dd0a63f08f6fa8a22d5dde46c3916e3be72359",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0x210b4fea7b8491a9b3394d470901f4140afd15ed8c6bf578af3699a37db2ad73",
+        "right"
+      ],
+      [
+        "0xb0d59474819e09d586c2176c443ef40ebc8ed43f6b4bb77938a45823d2b495ce",
+        "right"
+      ],
+      [
+        "0xb98546ade6d89dea00b4aa0604a1d29705975e07c26d847b91e3702bc9d1b4ce",
+        "left"
+      ]
+    ]
+  ],
+  "model_hash": "0x87ec84c0b8a6422d32368fe1ed95cae9e5156f27de15d7fcd855b67fe91373a2",
+  "ts": 1755692105.5396194,
+  "dag": {
+    "nodes": [
+      {
+        "id": "ingest",
+        "label": "Ingest content"
+      },
+      {
+        "id": "local_inference",
+        "label": "Local AI inference"
+      },
+      {
+        "id": "vdf",
+        "label": "VDF delay"
+      },
+      {
+        "id": "merkle",
+        "label": "Merkle root"
+      },
+      {
+        "id": "anchor",
+        "label": "Anchor on-chain"
+      },
+      {
+        "id": "zkp",
+        "label": "ZKP verify (mock)"
+      },
+      {
+        "id": "finalize",
+        "label": "Finalize decision"
+      }
+    ],
+    "edges": [
+      {
+        "u": "ingest",
+        "v": "local_inference"
+      },
+      {
+        "u": "local_inference",
+        "v": "vdf"
+      },
+      {
+        "u": "local_inference",
+        "v": "merkle"
+      },
+      {
+        "u": "vdf",
+        "v": "finalize"
+      },
+      {
+        "u": "merkle",
+        "v": "anchor"
+      },
+      {
+        "u": "anchor",
+        "v": "finalize"
+      },
+      {
+        "u": "zkp",
+        "v": "finalize"
+      }
+    ]
+  },
+  "zkp": {
+    "status": "placeholder",
+    "verified": false
+  },
+  "likes": 2,
+  "comments": [
+    {
+      "user": "anonymous",
+      "text": "Hello",
+      "ts": 1755692137.356767
+    }
+  ]
+}

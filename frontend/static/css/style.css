@@ -1,0 +1,37 @@
+/* Card styling */
+.post-card {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+    background-color: #fff;
+    transition: transform 0.2s;
+}
+.post-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Badge styling */
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 0.85em;
+    color: #fff;
+}
+.badge.accepted { background-color: #4CAF50; }
+.badge.flagged { background-color: #FF9800; }
+.badge.rejected { background-color: #F44336; }
+
+/* Button styling */
+.btn {
+    background-color: #1976D2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    margin-right: 4px;
+    cursor: pointer;
+}
+.btn:hover { background-color: #0D47A1; }

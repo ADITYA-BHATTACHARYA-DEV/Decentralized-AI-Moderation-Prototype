@@ -1,0 +1,154 @@
+{
+  "content_id": "cnt_33807dd4ce",
+  "text": "Vaibhav",
+  "inference": {
+    "label": "allow",
+    "score": 0.0,
+    "policy_flags": []
+  },
+  "vdf": {
+    "output": "0x85d0dbb8506ca217f95f298cef42a1d56641bb33f63585ec91be5c788570ba3d",
+    "seconds": 0.2246415615081787
+  },
+  "merkle_root": "0xa15e24fdab39332e7e3b8cc509d818ea83754940ead6403e49bf008c6f0aebda",
+  "proofs": [
+    [
+      [
+        "0xea1f26f4e86f890f1515ab228ea7ce2f188adf21a2b2578e22688a37b41d30a2",
+        "right"
+      ],
+      [
+        "0x61d322a2cc2d96e14ac7ec319ea4d445e35bec5f22ed4f06c3d83cd75b7e95d4",
+        "right"
+      ],
+      [
+        "0x8dd7bc2ef976066d48a126fc2f313ad849e4ea8219e899de13150f855bb4442b",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0x72b9313bff1b262f85217d5b289b1c74dd8b124d70001aaad602eed43b6ae5c1",
+        "left"
+      ],
+      [
+        "0x61d322a2cc2d96e14ac7ec319ea4d445e35bec5f22ed4f06c3d83cd75b7e95d4",
+        "right"
+      ],
+      [
+        "0x8dd7bc2ef976066d48a126fc2f313ad849e4ea8219e899de13150f855bb4442b",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0xf4d5219bd5c730b03b56b629ed9e2fda7476170c9ea155289efd4eb20cc76ce0",
+        "right"
+      ],
+      [
+        "0x5974151fd5824eec30f23def88ea82da91a3e8fd8b16cc37e44c99134d421f4f",
+        "left"
+      ],
+      [
+        "0x8dd7bc2ef976066d48a126fc2f313ad849e4ea8219e899de13150f855bb4442b",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0xd988c1dc6b2d666c89e172f9c9363259f037cb047d6f29cd30c53d307cbaac0b",
+        "left"
+      ],
+      [
+        "0x5974151fd5824eec30f23def88ea82da91a3e8fd8b16cc37e44c99134d421f4f",
+        "left"
+      ],
+      [
+        "0x8dd7bc2ef976066d48a126fc2f313ad849e4ea8219e899de13150f855bb4442b",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0xe1b1bfdcb25ec2f773b1db9f2f7ff44b687f1939d4911badffc7fd2d91fc9a6a",
+        "right"
+      ],
+      [
+        "0x77b7cced2387402f7239db326a1139d0e16fbdf56825b2ded4bcd2a05932b302",
+        "right"
+      ],
+      [
+        "0x2f9a2c242d35a51f8a1a3ba75b92ddf263f47302911bf0fa5b58cb4a7c41f764",
+        "left"
+      ]
+    ]
+  ],
+  "model_hash": "0x87ec84c0b8a6422d32368fe1ed95cae9e5156f27de15d7fcd855b67fe91373a2",
+  "ts": 1755691672.8187451,
+  "dag": {
+    "nodes": [
+      {
+        "id": "ingest",
+        "label": "Ingest content"
+      },
+      {
+        "id": "local_inference",
+        "label": "Local AI inference"
+      },
+      {
+        "id": "vdf",
+        "label": "VDF delay"
+      },
+      {
+        "id": "merkle",
+        "label": "Merkle root"
+      },
+      {
+        "id": "anchor",
+        "label": "Anchor on-chain"
+      },
+      {
+        "id": "zkp",
+        "label": "ZKP verify (mock)"
+      },
+      {
+        "id": "finalize",
+        "label": "Finalize decision"
+      }
+    ],
+    "edges": [
+      {
+        "u": "ingest",
+        "v": "local_inference"
+      },
+      {
+        "u": "local_inference",
+        "v": "vdf"
+      },
+      {
+        "u": "local_inference",
+        "v": "merkle"
+      },
+      {
+        "u": "vdf",
+        "v": "finalize"
+      },
+      {
+        "u": "merkle",
+        "v": "anchor"
+      },
+      {
+        "u": "anchor",
+        "v": "finalize"
+      },
+      {
+        "u": "zkp",
+        "v": "finalize"
+      }
+    ]
+  },
+  "zkp": {
+    "status": "placeholder",
+    "verified": false
+  }
+}

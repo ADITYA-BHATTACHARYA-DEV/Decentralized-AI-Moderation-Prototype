@@ -1,0 +1,154 @@
+{
+  "content_id": "cnt_24c6851e77",
+  "text": "Hello Everyone, India is a Beautiful Country",
+  "inference": {
+    "label": "allow",
+    "score": 0.0,
+    "policy_flags": []
+  },
+  "vdf": {
+    "output": "0x3c13fb6c3c3e0ed81af97de23885145d5eee09aa20e9a1341d5c2b541e76420c",
+    "seconds": 0.08127403259277344
+  },
+  "merkle_root": "0x45e92cd9e3929ff363823de4579eb4a6796c9d8b0b998428440db611f6919a6e",
+  "proofs": [
+    [
+      [
+        "0xea1f26f4e86f890f1515ab228ea7ce2f188adf21a2b2578e22688a37b41d30a2",
+        "right"
+      ],
+      [
+        "0x61d322a2cc2d96e14ac7ec319ea4d445e35bec5f22ed4f06c3d83cd75b7e95d4",
+        "right"
+      ],
+      [
+        "0xf1ee9a2a26c85748407a70811661c74f9c873990d65af0b77aaf12f2eebe7334",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0x9ad18480d0d2e6d666faf6fa73c8f50d5c5ab24a398b554d2b162103cbd418a5",
+        "left"
+      ],
+      [
+        "0x61d322a2cc2d96e14ac7ec319ea4d445e35bec5f22ed4f06c3d83cd75b7e95d4",
+        "right"
+      ],
+      [
+        "0xf1ee9a2a26c85748407a70811661c74f9c873990d65af0b77aaf12f2eebe7334",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0xf4d5219bd5c730b03b56b629ed9e2fda7476170c9ea155289efd4eb20cc76ce0",
+        "right"
+      ],
+      [
+        "0x67af63f72e2b91605e03c73651793e165a2d51a760cbb2bf49522f2e77444731",
+        "left"
+      ],
+      [
+        "0xf1ee9a2a26c85748407a70811661c74f9c873990d65af0b77aaf12f2eebe7334",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0xd988c1dc6b2d666c89e172f9c9363259f037cb047d6f29cd30c53d307cbaac0b",
+        "left"
+      ],
+      [
+        "0x67af63f72e2b91605e03c73651793e165a2d51a760cbb2bf49522f2e77444731",
+        "left"
+      ],
+      [
+        "0xf1ee9a2a26c85748407a70811661c74f9c873990d65af0b77aaf12f2eebe7334",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0x19651dc26227e476ed56491f08bace082d0f7c55f7b124923d5cc5dbf0039508",
+        "right"
+      ],
+      [
+        "0x44c1ecd3519b57e1cf3818e04eb7fa63cca8918d25dc7b66cf6aa417555c986c",
+        "right"
+      ],
+      [
+        "0x31a96343093f6522bed70eb548f34c0e80095bdd0b3cbcbae1f1b52fe8c08e3c",
+        "left"
+      ]
+    ]
+  ],
+  "model_hash": "0x87ec84c0b8a6422d32368fe1ed95cae9e5156f27de15d7fcd855b67fe91373a2",
+  "ts": 1755676539.0856223,
+  "dag": {
+    "nodes": [
+      {
+        "id": "ingest",
+        "label": "Ingest content"
+      },
+      {
+        "id": "local_inference",
+        "label": "Local AI inference"
+      },
+      {
+        "id": "vdf",
+        "label": "VDF delay"
+      },
+      {
+        "id": "merkle",
+        "label": "Merkle root"
+      },
+      {
+        "id": "anchor",
+        "label": "Anchor on-chain"
+      },
+      {
+        "id": "zkp",
+        "label": "ZKP verify (mock)"
+      },
+      {
+        "id": "finalize",
+        "label": "Finalize decision"
+      }
+    ],
+    "edges": [
+      {
+        "u": "ingest",
+        "v": "local_inference"
+      },
+      {
+        "u": "local_inference",
+        "v": "vdf"
+      },
+      {
+        "u": "local_inference",
+        "v": "merkle"
+      },
+      {
+        "u": "vdf",
+        "v": "finalize"
+      },
+      {
+        "u": "merkle",
+        "v": "anchor"
+      },
+      {
+        "u": "anchor",
+        "v": "finalize"
+      },
+      {
+        "u": "zkp",
+        "v": "finalize"
+      }
+    ]
+  },
+  "zkp": {
+    "status": "placeholder",
+    "verified": false
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "content_id": "cnt_a12a4fe036",
+  "text": "Arnav is Personalta",
+  "inference": {
+    "label": "allow",
+    "score": 0.0,
+    "policy_flags": []
+  },
+  "vdf": {
+    "output": "0xaf2df927dc7958873546f19581ddfe35fbfbe6d25d9142a8b7daa51c36ab342e",
+    "seconds": 0.10570240020751953
+  },
+  "merkle_root": "0x52ce14116d99ca368fd6d738d4bbaeb3b0e88f35bd48920b35696e35358b0ddf",
+  "proofs": [
+    [
+      [
+        "0xea1f26f4e86f890f1515ab228ea7ce2f188adf21a2b2578e22688a37b41d30a2",
+        "right"
+      ],
+      [
+        "0x61d322a2cc2d96e14ac7ec319ea4d445e35bec5f22ed4f06c3d83cd75b7e95d4",
+        "right"
+      ],
+      [
+        "0x43685be1aaae5f296df0a25866c827131b347833065530f19bbdbccb12c8b6e9",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0xe682bcfc73a0f86d74bc9615f1dc2850083934277ea00829d3751675b18c9d65",
+        "left"
+      ],
+      [
+        "0x61d322a2cc2d96e14ac7ec319ea4d445e35bec5f22ed4f06c3d83cd75b7e95d4",
+        "right"
+      ],
+      [
+        "0x43685be1aaae5f296df0a25866c827131b347833065530f19bbdbccb12c8b6e9",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0xf4d5219bd5c730b03b56b629ed9e2fda7476170c9ea155289efd4eb20cc76ce0",
+        "right"
+      ],
+      [
+        "0x7ad10905c96c9fc6923881d55ae980e0e3be7061114541887b4e6bf2bc8d07c0",
+        "left"
+      ],
+      [
+        "0x43685be1aaae5f296df0a25866c827131b347833065530f19bbdbccb12c8b6e9",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0xd988c1dc6b2d666c89e172f9c9363259f037cb047d6f29cd30c53d307cbaac0b",
+        "left"
+      ],
+      [
+        "0x7ad10905c96c9fc6923881d55ae980e0e3be7061114541887b4e6bf2bc8d07c0",
+        "left"
+      ],
+      [
+        "0x43685be1aaae5f296df0a25866c827131b347833065530f19bbdbccb12c8b6e9",
+        "right"
+      ]
+    ],
+    [
+      [
+        "0xd3b3fe81cd6ebf96e1cd48eb53f6d624741c95bd66700df12f201819bc59406e",
+        "right"
+      ],
+      [
+        "0x1c62af91650ccb1f12d2259e35f41141ec5596c131cf5b1bba646af1ed3a740b",
+        "right"
+      ],
+      [
+        "0xdf7c5daeff8b454251bebc0f448a7eac7e1a92b21692c9ab67d3cf51a2c3cd4a",
+        "left"
+      ]
+    ]
+  ],
+  "model_hash": "0x87ec84c0b8a6422d32368fe1ed95cae9e5156f27de15d7fcd855b67fe91373a2",
+  "ts": 1755692733.212843,
+  "dag": {
+    "nodes": [
+      {
+        "id": "ingest",
+        "label": "Ingest content"
+      },
+      {
+        "id": "local_inference",
+        "label": "Local AI inference"
+      },
+      {
+        "id": "vdf",
+        "label": "VDF delay"
+      },
+      {
+        "id": "merkle",
+        "label": "Merkle root"
+      },
+      {
+        "id": "anchor",
+        "label": "Anchor on-chain"
+      },
+      {
+        "id": "zkp",
+        "label": "ZKP verify (mock)"
+      },
+      {
+        "id": "finalize",
+        "label": "Finalize decision"
+      }
+    ],
+    "edges": [
+      {
+        "u": "ingest",
+        "v": "local_inference"
+      },
+      {
+        "u": "local_inference",
+        "v": "vdf"
+      },
+      {
+        "u": "local_inference",
+        "v": "merkle"
+      },
+      {
+        "u": "vdf",
+        "v": "finalize"
+      },
+      {
+        "u": "merkle",
+        "v": "anchor"
+      },
+      {
+        "u": "anchor",
+        "v": "finalize"
+      },
+      {
+        "u": "zkp",
+        "v": "finalize"
+      }
+    ]
+  },
+  "zkp": {
+    "status": "placeholder",
+    "verified": false
+  },
+  "likes": 1,
+  "comments": [
+    {
+      "user": "anonymous",
+      "text": "arnav",
+      "ts": 1755692758.4248533
+    }
+  ]
+}
